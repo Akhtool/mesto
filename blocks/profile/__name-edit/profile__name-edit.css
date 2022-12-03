@@ -1,0 +1,6 @@
+.profile__name-edit {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-direction: row;
+}
