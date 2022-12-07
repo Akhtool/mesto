@@ -19,11 +19,11 @@
             <div class="profile__info">
                 <div class="profile__name-edit">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button"></button>
+                    <button type="button" class="profile__edit-button" aria-label="edit"></button>
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <button class="profile__add-button"></button>
+            <button type="button" class="profile__add-button" aria-label="add"></button>
         </section>
         <section class="cards">
             <ul class="cards__list">
@@ -31,42 +31,42 @@
                     <img src="./images/coy-pede.jpg" alt="Каменная башня в горах" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Цой-Педе</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
                 <li class="card">
                     <img src="./images/kazenoy-am.jpg" alt="Лошадь на фоне гор" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Казеной-Ам</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
                 <li class="card">
                     <img src="./images/serdce-chechny.jpg" alt="Фотография мечети на закате" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Грозный</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
                 <li class="card">
                     <img src="./images/benoy.jpg" alt="Река лазурного цвета" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Беной</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
                 <li class="card">
                     <img src="./images/argunskoe-ushelye.jpg" alt="Горная река" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Чеченская Республика</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
                 <li class="card">
                     <img src="./images/sulaksky-kanyon.jpg" alt="Река на дне каньона" class="card__image">
                     <div class="card__info">
                         <h2 class="card__name">Сулакский каньон</h2>
-                        <button class="card__like"></button>
+                        <button type="button" class="card__like"></button>
                     </div>
                 </li>
             </ul>
@@ -78,12 +78,12 @@
     <div class="popup">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form action="#" class="popup__input-form">
-                <input type="text" name="user-name" required class="popup__input popup__name-input" placeholder="Имя">
-                <input type="text" name="user-description" class="popup__input popup__description-input" placeholder="О себе">
-                <input type="submit" class="popup__submit">
+            <form action="#" name="input-form" class="popup__input-form">
+                <input type="text" name="user-name" required class="popup__input popup__input_type_name" placeholder="Имя">
+                <input type="text" name="user-description" class="popup__input popup__input_type_description" placeholder="О себе">
+                <input type="submit" value="Сохранить" class="popup__submit">
             </form>
-            <button class="popup__close-button"></button>
+            <button type="button" class="popup__close-button" aria-label="close"></button>
         </div>
     </div>
     <script src="./scripts/script.js"></script>

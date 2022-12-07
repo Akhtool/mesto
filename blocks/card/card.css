@@ -1,7 +1,6 @@
 .card {
     box-sizing: border-box;
     max-width: 282px;
-    max-height: 362px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #fff;
