@@ -26,56 +26,28 @@
             <button type="button" class="profile__add-button" aria-label="add"></button>
         </section>
         <section class="cards">
-            <ul class="cards__list">
-                <li class="card">
-                    <img src="./images/coy-pede.jpg" alt="Каменная башня в горах" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Цой-Педе</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img src="./images/kazenoy-am.jpg" alt="Лошадь на фоне гор" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Казеной-Ам</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img src="./images/serdce-chechny.jpg" alt="Фотография мечети на закате" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Грозный</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img src="./images/benoy.jpg" alt="Река лазурного цвета" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Беной</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img src="./images/argunskoe-ushelye.jpg" alt="Горная река" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Чеченская Республика</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img src="./images/sulaksky-kanyon.jpg" alt="Река на дне каньона" class="card__image">
-                    <div class="card__info">
-                        <h2 class="card__name">Сулакский каньон</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-            </ul>
+            <ul class="cards__list"></ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <!--Попап добавления карточек-->
+    <div class="popup popup_type_add-card">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form action="#" name="input-form" class="popup__input-form">
+                <input type="text" name="card-name" required class="popup__input popup__input_type_name" placeholder="Название">
+                <input type="text" name="card-link" class="popup__input popup__input_type_description" placeholder="Ссылка на картинку">
+                <input type="submit" value="Создать" class="popup__submit">
+            </form>
+            <button type="button" class="popup__close-button" aria-label="close"></button>
+        </div>
+    </div>
+    <!--Попап просмотра фотографий-->
+
+    <!--Попап редактирования профиля-->
+    <div class="popup popup_type_profile">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form action="#" name="input-form" class="popup__input-form">
@@ -86,6 +58,16 @@
             <button type="button" class="popup__close-button" aria-label="close"></button>
         </div>
     </div>
+    <!-- Шаблон для карточек -->
+    <template id="card-template">
+        <li class="card">
+            <img class="card__image">
+            <div class="card__info">
+                <h2 class="card__name"></h2>
+                <button type="button" class="card__like"></button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 </html>
