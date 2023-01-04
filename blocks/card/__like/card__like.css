@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 0;
-    transition: .7s all;
+    transition: background-image .7s ease;
 }
 
 .card__like:hover {
