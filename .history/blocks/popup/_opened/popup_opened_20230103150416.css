@@ -1,8 +1,0 @@
-.popup_opened {
-    display: flex;
-    color: red;
-    visibility: visible;
-    opacity: 1;
-    z-index: 5;
-    transition: opacity 1s;
-}

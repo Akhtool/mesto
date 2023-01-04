@@ -1,6 +1,0 @@
-.popup_opened {
-    display: flex;
-    height: 600px;
-    visibility: visible;
-    transition: visability 2s;
-}
