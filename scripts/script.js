@@ -69,6 +69,7 @@ const initialCards = [
     cardElement.querySelector('.card__name').textContent = cardName;
     cardElement.querySelector('.card__image').src = cardLink;
     const popupImage = document.querySelector('.popup__image');
+    const popupImageCaption = document.querySelector('.popup__figure-caption');
     const cardImage = cardElement.querySelector('.card__image');
     const popupShowImage = document.querySelector('.popup_type_show-image');
     const popupImageCloseButton = document.querySelector('.popup__close-button_type_show-image');
@@ -85,7 +86,8 @@ const initialCards = [
     });
 
     cardImage.addEventListener('click', function (evt) {
-        popupImage.src = evt.target.src;
+        popupImage.src = cardLink;
+        popupImageCaption.textContent = cardName;
         openPopup(popupShowImage)
       });
       popupImageCloseButton.addEventListener('click', () => {
