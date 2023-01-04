@@ -52,4 +52,5 @@
 /* popup_type_show-image */
 @import url(../blocks/popup/__image-wrapper/popup__image-wrapper.css);
 @import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__figure-wrapper/popup__figure-wrapper.css);
 @import url(../blocks/popup/__figure-caption/popup__figure-caption.css);
