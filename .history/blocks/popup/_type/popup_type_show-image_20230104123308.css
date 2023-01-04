@@ -1,0 +1,6 @@
+.popup_type_show-image {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    background-color: rgba(0, 0, 0, .9);
+}
