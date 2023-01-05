@@ -1,9 +1,9 @@
 const editButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_profile-edit');
-const closeEditProfileButton = document.querySelector('.popup__close-button_type_profile');
-const formElement = document.querySelector('.popup__input-form_type_profile');
-const nameInput = formElement.querySelector('.popup__input_type_name');
-const jobInput = formElement.querySelector('.popup__input_type_description');
+const profileEditCloseButton = document.querySelector('.popup__close-button_type_profile');
+const profileFormElement = document.querySelector('.popup__input-form_type_profile');
+const profileNameInput = profileFormElement.querySelector('.popup__input_type_name');
+const jobInput = profileFormElement.querySelector('.popup__input_type_description');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 
@@ -16,20 +16,20 @@ function closePopup(popup) {
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    profileName.textContent = nameInput.value;
+    profileName.textContent = profileNameInput.value;
     profileDescription.textContent = jobInput.value;
     closePopup(popupEditProfile);
 }
 
 editButton.addEventListener('click', () => {
-    nameInput.value = profileName.textContent;
+    profileNameInput.value = profileName.textContent; 
     jobInput.value = profileDescription.textContent;
     openPopup(popupEditProfile)
 });
-closeEditProfileButton.addEventListener('click', () => {
+profileEditCloseButton.addEventListener('click', () => {
     closePopup(popupEditProfile)
 });
-formElement.addEventListener('submit', handleFormSubmit); 
+profileFormElement.addEventListener('submit', handleFormSubmit); 
 
 const initialCards = [
     {
@@ -73,7 +73,7 @@ const initialCards = [
     const cardImage = cardElement.querySelector('.card__image');
     const popupShowImage = document.querySelector('.popup_type_show-image');
     const popupImageCloseButton = document.querySelector('.popup__close-button_type_show-image');
-
+    console.log(popupShowImage);
     // Кнопка лайка
     cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__like_active');
@@ -86,6 +86,7 @@ const initialCards = [
     });
 
     cardImage.addEventListener('click', function (evt) {
+        console.log(popupShowImage)
         popupImage.src = cardLink;
         popupImageCaption.textContent = cardName;
         openPopup(popupShowImage)
