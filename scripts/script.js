@@ -14,7 +14,7 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-function handleFormSubmit (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = profileNameInput.value;
     profileDescription.textContent = jobInput.value;
@@ -29,7 +29,7 @@ editButton.addEventListener('click', () => {
 profileEditCloseButton.addEventListener('click', () => {
     closePopup(popupEditProfile)
 });
-profileFormElement.addEventListener('submit', handleFormSubmit); 
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 const initialCards = [
     {
