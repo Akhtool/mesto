@@ -1,4 +1,4 @@
-const editButton = document.querySelector(".profile__edit-button");
+const buttonEdit = document.querySelector(".profile__edit-button");
 const popupEditProfile = document.querySelector(".popup_type_profile-edit");
 const profileEditCloseButton = document.querySelector(
   ".popup__close-button_type_profile"
@@ -21,12 +21,22 @@ const popupShowImage = document.querySelector(".popup_type_show-image");
 const popupImageCloseButton = document.querySelector(
   ".popup__close-button_type_show-image"
 );
-
+// Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByClickOnEscape);
 }
+// Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.addEventListener("keydown", closePopupByClickOnEscape);
+}
+// Функция закрытия при нажатии на ESC
+function closePopupByClickOnEscape(evt) {
+  if (evt.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_opened");
+    closePopup(popupOpened);
+  }
 }
 
 function handleProfileFormSubmit(evt) {
@@ -36,7 +46,7 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEditProfile);
 }
 
-editButton.addEventListener("click", () => {
+buttonEdit.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
   openPopup(popupEditProfile);
