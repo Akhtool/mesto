@@ -31,6 +31,12 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.addEventListener("keydown", closePopupByClickOnEscape);
 }
+// Функция закрытия попапа по клику на оверлей
+const closePopupByClickOnOverlay = (evt) => {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.currentTarget);
+  }
+};
 // Функция закрытия при нажатии на ESC
 function closePopupByClickOnEscape(evt) {
   if (evt.key === "Escape") {
@@ -156,3 +162,6 @@ cardAddForm.addEventListener("submit", handleAddCardForm);
 cardAddButton.addEventListener("click", () => {
   openPopup(popupAddCard);
 });
+popupAddCard.addEventListener("click", closePopupByClickOnOverlay);
+popupEditProfile.addEventListener("click", closePopupByClickOnOverlay);
+popupShowImage.addEventListener("click", closePopupByClickOnOverlay);
