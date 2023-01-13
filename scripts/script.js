@@ -62,6 +62,16 @@ profileEditCloseButton.addEventListener("click", () => {
 });
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
+// const validationConfig = {
+//   formSelector: ".popup__form",
+//   inputSelector: ".popup__inputs",
+//   submitButtonSelector: ".popup__buttons-save",
+//   inactiveButtonClass: "popup__buttons-save_invalid",
+//   inputErrorClass: "popup__input-error",
+//   errorClass: "popup__input-error_visible",
+//   typeError: "popup__inputs_type_error",
+// };
+
 const initialCards = [
   {
     name: "Архыз",
@@ -162,6 +172,7 @@ cardAddForm.addEventListener("submit", handleAddCardForm);
 cardAddButton.addEventListener("click", () => {
   openPopup(popupAddCard);
 });
-popupAddCard.addEventListener("click", closePopupByClickOnOverlay);
-popupEditProfile.addEventListener("click", closePopupByClickOnOverlay);
-popupShowImage.addEventListener("click", closePopupByClickOnOverlay);
+popupAddCard.addEventListener("mousedown", closePopupByClickOnOverlay);
+popupEditProfile.addEventListener("mousedown", closePopupByClickOnOverlay);
+popupShowImage.addEventListener("mousedown", closePopupByClickOnOverlay);
+enableValidation(config);
