@@ -29,7 +29,7 @@ function openPopup(popup) {
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.addEventListener("keydown", closePopupByClickOnEscape);
+  document.removeEventListener("keydown", closePopupByClickOnEscape);
 }
 // Функция закрытия попапа по клику на оверлей
 const closePopupByClickOnOverlay = (evt) => {
@@ -61,16 +61,6 @@ profileEditCloseButton.addEventListener("click", () => {
   closePopup(popupEditProfile);
 });
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-// const validationConfig = {
-//   formSelector: ".popup__form",
-//   inputSelector: ".popup__inputs",
-//   submitButtonSelector: ".popup__buttons-save",
-//   inactiveButtonClass: "popup__buttons-save_invalid",
-//   inputErrorClass: "popup__input-error",
-//   errorClass: "popup__input-error_visible",
-//   typeError: "popup__inputs_type_error",
-// };
 
 const initialCards = [
   {
@@ -162,6 +152,10 @@ const cardAddCloseButton = document.querySelector(
 function handleAddCardForm(evt) {
   evt.preventDefault();
   addCardElement(cardElementName.value, cardElementLink.value);
+  evt.target.reset();
+  const button = evt.submitter;
+  button.disabled = true;
+  button.classList.add("popup__submit_invalid");
   closePopup(popupAddCard);
 }
 
