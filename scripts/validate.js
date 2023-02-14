@@ -9,9 +9,6 @@ const config = {
 };
 function showInputError(formElement, inputElement, config) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  console.log(formElement);
-  console.log(inputElement.id);
-  console.log(errorElement);
   errorElement.classList.add(config.errorClass);
   errorElement.textContent = inputElement.validationMessage;
   inputElement.classList.add(config.typeError);
@@ -50,8 +47,10 @@ function setEventListener(formElement, config) {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector)
   );
+
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, config);
