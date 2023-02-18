@@ -44,14 +44,11 @@ const cardAddCloseButton = document.querySelector(
   ".popup__close-button_type_add-card"
 );
 
-const popupAddFormValidator = new FormValidator(
-  validationConfig,
-  popupEditProfile
-);
+const popupAddFormValidator = new FormValidator(validationConfig, popupAddCard);
 
 const popupEditFormValidator = new FormValidator(
   validationConfig,
-  popupAddCard
+  popupEditProfile
 );
 
 popupAddFormValidator.enableValidation();
@@ -64,7 +61,7 @@ function openPopup(popup) {
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.addEventListener("keydown", closePopupByClickOnEscape);
+  document.removeEventListener("keydown", closePopupByClickOnEscape);
 }
 // Функция закрытия попапа по клику на оверлей
 const closePopupByClickOnOverlay = (evt) => {
@@ -91,7 +88,7 @@ buttonEditProfile.addEventListener("click", () => {
   openPopup(popupEditProfile);
   profileNameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
-  popupEditFormValidator.disabledButton();
+  popupEditFormValidator.disableValidation();
 });
 profileEditCloseButton.addEventListener("click", () => {
   closePopup(popupEditProfile);
@@ -165,7 +162,7 @@ cardAddForm.addEventListener("submit", handleAddCardForm);
 cardAddButton.addEventListener("click", () => {
   openPopup(popupAddCard);
   cardAddForm.reset();
-  popupAddFormValidator.disabledButton();
+  popupAddFormValidator.disableValidation();
 });
 popupAddCard.addEventListener("mousedown", closePopupByClickOnOverlay);
 popupEditProfile.addEventListener("mousedown", closePopupByClickOnOverlay);

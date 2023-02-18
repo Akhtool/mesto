@@ -17,6 +17,7 @@ export class Card {
 
   generateCard() {
     this._newCard = this._getTemplate();
+    this._likeCard = this._newCard.querySelector(".card__like");
     this._setData();
     this._setListeners();
 
@@ -39,9 +40,7 @@ export class Card {
   }
 
   _handleLikeClick() {
-    this._newCard
-      .querySelector(".card__like")
-      .classList.toggle("card__like_active");
+    this._likeCard.classList.toggle("card__like_active");
   }
 
   _setListeners() {
