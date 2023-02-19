@@ -32,24 +32,29 @@ const popupEditFormValidator = new FormValidator(
   popupEditProfile
 );
 
+// Включение фич
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
+
 // Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupByClickOnEscape);
 }
+
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupByClickOnEscape);
 }
+
 // Функция закрытия попапа по клику на оверлей
 const closePopupByClickOnOverlay = (evt) => {
   if (evt.target.classList.contains("popup")) {
     closePopup(evt.currentTarget);
   }
 };
+
 // Функция закрытия при нажатии на ESC
 function closePopupByClickOnEscape(evt) {
   if (evt.key === "Escape") {
@@ -58,28 +63,6 @@ function closePopupByClickOnEscape(evt) {
   }
 }
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-}
-
-buttonEditProfile.addEventListener("click", () => {
-  openPopup(popupEditProfile);
-  profileNameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
-  popupEditFormValidator.disableValidation();
-});
-profileEditCloseButton.addEventListener("click", () => {
-  closePopup(popupEditProfile);
-});
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-popupImageCloseButton.addEventListener("click", () => {
-  closePopup(popupShowImage);
-});
-
 // Функция открытия большой картинки
 function openBigImage({ link, name }) {
   popupImage.src = link;
@@ -87,14 +70,27 @@ function openBigImage({ link, name }) {
   popupImageCaption.textContent = name;
   openPopup(popupShowImage);
 }
+// создание инстансов класса кард
 const createGalery = (dataCard) => {
   return new Card(dataCard, "#card-template", openBigImage).generateCard();
 };
+// добавление исходных карточек из массива
 initialCards.forEach((card) => {
   const newCard = createGalery(card);
   cardsList.prepend(newCard);
 });
 
+// CЛУШАТЕЛИ И ОБРАБОТЧИКИ
+
+// обработчики
+
+// обработчик клика редактирования профиля
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  profileDescription.textContent = jobInput.value;
+  closePopup(popupEditProfile);
+}
 // обработчик клика добавления карточки
 function handleAddCardForm(evt) {
   evt.preventDefault();
@@ -106,16 +102,39 @@ function handleAddCardForm(evt) {
   cardsList.prepend(imageItem);
   closePopup(popupAddCard);
 }
-cardAddCloseButton.addEventListener("click", () => {
-  closePopup(popupAddCard);
-});
+
+// слушатели
+
 // слушатель клика добавления карточки
-cardAddForm.addEventListener("submit", handleAddCardForm);
 cardAddButton.addEventListener("click", () => {
   openPopup(popupAddCard);
   cardAddForm.reset();
   popupAddFormValidator.disableValidation();
 });
+// слушатель на кнопку редактирования профиля
+buttonEditProfile.addEventListener("click", () => {
+  openPopup(popupEditProfile);
+  profileNameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
+  popupEditFormValidator.disableValidation();
+});
+// слушатель на кнопку закрытия попап добавления карточки
+cardAddCloseButton.addEventListener("click", () => {
+  closePopup(popupAddCard);
+});
+// слушатель на кнопку закрытия попап редактирования профиля
+profileEditCloseButton.addEventListener("click", () => {
+  closePopup(popupEditProfile);
+});
+// слушатель на кнопку закрытия большой картинки
+popupImageCloseButton.addEventListener("click", () => {
+  closePopup(popupShowImage);
+});
+// слушатель сабмита попапа редактирования профиля
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+// слушатель сабмита попапа добавления карточки
+cardAddForm.addEventListener("submit", handleAddCardForm);
+
 popupAddCard.addEventListener("mousedown", closePopupByClickOnOverlay);
 popupEditProfile.addEventListener("mousedown", closePopupByClickOnOverlay);
 popupShowImage.addEventListener("mousedown", closePopupByClickOnOverlay);
