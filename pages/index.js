@@ -23,6 +23,7 @@ import {
   cardAddCloseButton,
   cardsList,
 } from "../utils/constants.js";
+import Section from "../components/Section.js";
 
 // Новые экземпляры(инстансы)
 const popupAddFormValidator = new FormValidator(validationConfig, popupAddCard);
@@ -134,7 +135,7 @@ popupImageCloseButton.addEventListener("click", () => {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 // слушатель сабмита попапа добавления карточки
 cardAddForm.addEventListener("submit", handleAddCardForm);
-
+// слушатели на нажатие на оверлей
 popupAddCard.addEventListener("mousedown", closePopupByClickOnOverlay);
 popupEditProfile.addEventListener("mousedown", closePopupByClickOnOverlay);
 popupShowImage.addEventListener("mousedown", closePopupByClickOnOverlay);
