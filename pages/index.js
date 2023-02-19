@@ -72,12 +72,13 @@ function openBigImage({ link, name }) {
   openPopup(popupShowImage);
 }
 // создание инстансов класса кард
-const createGalery = (dataCard) => {
+function createCard(dataCard) {
   return new Card(dataCard, "#card-template", openBigImage).generateCard();
-};
+}
+
 // добавление исходных карточек из массива
 initialCards.forEach((card) => {
-  const newCard = createGalery(card);
+  const newCard = createCard(card);
   cardsList.prepend(newCard);
 });
 
@@ -99,7 +100,7 @@ function handleAddCardForm(evt) {
     name: cardElementName.value,
     link: cardElementLink.value,
   };
-  const imageItem = createGalery(addValues);
+  const imageItem = createCard(addValues);
   cardsList.prepend(imageItem);
   closePopup(popupAddCard);
 }

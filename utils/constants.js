@@ -8,6 +8,7 @@ export const validationConfig = {
   errorClass: "popup__input-error_active",
   typeError: "popup__input_type_error",
 };
+
 // Исходные карточки
 export const initialCards = [
   {
@@ -67,7 +68,7 @@ export const popupShowImage = document.querySelector(".popup_type_show-image");
 export const popupImageCloseButton = document.querySelector(
   ".popup__close-button_type_show-image"
 );
-//попап добавлениея фотографий
+//попап добавлениея карточек
 export const popupAddCard = document.querySelector(".popup_type_add-card");
 export const cardAddButton = document.querySelector(".profile__add-button");
 export const cardSaveButton = document.querySelector(".popup__save-button");
