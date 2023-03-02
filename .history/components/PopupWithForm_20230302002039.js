@@ -18,8 +18,8 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
-    this._form = this._popupFromSelector.querySelector(".popup__input-form");
-    this._inputList = this._form.querySelectorAll(".popup__input");
+    this._form = document.querySelector(".popup__input-form");
+    this._inputList = document.querySelectorAll(".popup__input");
   }
 
   _getInputValues() {
@@ -34,8 +34,8 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._inputValues = this._getInputValues();
-      this._submitCallback(this._inputValues);
+      // this._inputValues = this._getInputValues();
+      // this._submitCallback(this._inputValues);
       this.close();
     });
   }

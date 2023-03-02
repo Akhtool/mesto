@@ -6,7 +6,7 @@
 // - Содержит публичный метод `getUserInfo`, который возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
 // - Содержит публичный метод `setUserInfo,` который принимает новые данные пользователя и добавляет их на страницу.
 
-export default class UserInfo {
+export class UserInfo {
   constructor({ userName, job }) {
     this._userName = document.querySelector(userName);
     this._userJob = document.querySelector(job);
