@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
+    <!-- <link rel="stylesheet" href="pages/index.css" /> -->
     <title>Место</title>
   </head>
   <body class="page">
     <header class="header">
       <a href="#" class="header__logo-link">
         <img
-          src="./images/header__logo.svg"
+          src="<%=require('./images/header__logo.svg')%>"
           class="header__logo"
           alt="Логотип сайта Место"
         />
@@ -20,7 +20,7 @@
     <main class="container">
       <section class="profile">
         <img
-          src="./images/profile__image.jpg"
+          src="<%=require('./images/profile__image.jpg')%>"
           alt="Изображение профиля"
           class="profile__image"
         />
@@ -152,6 +152,6 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
+    <!-- <script type="module" src="./pages/index.js" defer></script> -->
   </body>
 </html>
