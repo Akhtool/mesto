@@ -25,7 +25,7 @@ export class Card {
 
   generateCard() {
     this._newCard = this._getTemplate();
-    this._likeCard = this._newCard.querySelector(".card__like");
+    this._likeButton = this._newCard.querySelector(".card__like");
     this._setData();
     this._setListeners();
 
@@ -48,7 +48,7 @@ export class Card {
   }
 
   _handleLikeClick() {
-    this._likeCard.classList.toggle("card__like_active");
+    this._likeButton.classList.toggle("card__like_active");
   }
 
   _setListeners() {
@@ -60,8 +60,7 @@ export class Card {
       this._handleDeleteClick();
     });
     // Слушатель клика на кнопку лайку
-    this._likeCardButton = this._newCard.querySelector(".card__like");
-    this._likeCardButton.addEventListener("click", () => {
+    this._likeButton.addEventListener("click", () => {
       this._handleLikeClick();
     });
 

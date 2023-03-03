@@ -18,7 +18,7 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
-    this._form = this._popupFromSelector.querySelector(".popup__input-form");
+    this._form = this._popup.querySelector(".popup__input-form");
     this._inputList = this._form.querySelectorAll(".popup__input");
   }
 
@@ -38,10 +38,6 @@ export class PopupWithForm extends Popup {
       this._submitCallback(this._inputValues);
       this.close();
     });
-  }
-
-  open() {
-    super.open();
   }
 
   close() {
