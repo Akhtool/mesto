@@ -30,7 +30,6 @@ const popupEditFormValidator = new FormValidator(
 // инстанс который отвечает за отрисовку элементов на странице
 const section = new Section(
   {
-    items: initialCards,
     renderer: (item) => {
       section.addItem(createCard(item));
     },
@@ -100,7 +99,7 @@ buttonEditProfile.addEventListener("click", () => {
 // Включение фич
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
-section.renderItems();
+section.renderItems(initialCards);
 popupWithImage.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
