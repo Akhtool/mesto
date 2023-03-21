@@ -3,7 +3,6 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {
   validationConfig,
-  initialCards,
   buttonEditProfile,
   popupEditProfile,
   profileNameInput,
@@ -47,7 +46,17 @@ function openPopupWithImage(name, link) {
   popupWithImage.open(name, link);
 }
 // инстанс класса попапа с формой для popupCard
-const popupCard = new PopupWithForm(".popup_type_add-card", handleAddCardForm);
+const popupCard = new PopupWithForm(".popup_type_add-card", (formData) => {
+  api
+    .addNewCard(formData)
+    .then((item) => {
+      section.addItem(createCard(item));
+      popupCard.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 // инстанс класса попапа с формой для popupProfile
 const popupProfile = new PopupWithForm(
   ".popup_type_profile-edit",
@@ -116,7 +125,6 @@ buttonEditProfile.addEventListener("click", () => {
 // Включение фич
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
-// section.renderItems(initialCards);
 popupWithImage.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
