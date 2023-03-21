@@ -116,13 +116,14 @@ buttonEditProfile.addEventListener("click", () => {
 // Включение фич
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
-section.renderItems(initialCards);
+// section.renderItems(initialCards);
 popupWithImage.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
 
-Promise.all([api.getUserInfo()])
-  .then(([info]) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([info, cards]) => {
     userInfo.setUserInfo(info);
+    section.renderItems(cards.reverse());
   })
   .catch((err) => console.log(err));
