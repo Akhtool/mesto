@@ -51,7 +51,19 @@ const popupCard = new PopupWithForm(".popup_type_add-card", handleAddCardForm);
 // инстанс класса попапа с формой для popupProfile
 const popupProfile = new PopupWithForm(
   ".popup_type_profile-edit",
-  handleProfileFormSubmit
+  (userData) => {
+    api
+      .setUserInfo(userData)
+      .then((newUserData) => {
+        userInfo.setUserInfo(newUserData);
+      })
+      .then(() => {
+        popupProfile.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 );
 // инстанс класса который отвечает за управление отображением информации о пользователе на странице
 const userInfo = new UserInfo({
@@ -111,7 +123,6 @@ popupProfile.setEventListeners();
 
 Promise.all([api.getUserInfo()])
   .then(([info]) => {
-    console.log(info);
     userInfo.setUserInfo(info);
   })
   .catch((err) => console.log(err));

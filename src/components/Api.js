@@ -23,14 +23,14 @@ export default class Api {
     }).then(this._checkResponseStatus);
   }
 
-  setUserInfo({ name, about }) {
+  setUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        about: about,
+        name: data.userName,
+        about: data.job,
       }),
-    }).then(this._checkResponseStatus());
+    }).then(this._checkResponseStatus);
   }
 }
