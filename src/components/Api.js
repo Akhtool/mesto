@@ -4,7 +4,7 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  _checkResponseStatus() {
+  _checkResponseStatus(res) {
     if (res.ok) {
       return res.json();
     }
@@ -21,5 +21,16 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._checkResponseStatus);
+  }
+
+  setUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then(this._checkResponseStatus());
   }
 }

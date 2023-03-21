@@ -10,13 +10,18 @@ import {
   jobInput,
   popupAddCard,
   cardAddButton,
+  apiOptions,
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api";
 
 // Новые экземпляры(инстансы)
+
+// инстанс класса Api:
+const api = new Api(apiOptions);
 
 // ИНСТАНСЫ ВАЛИДАЦИИ
 
@@ -103,3 +108,10 @@ section.renderItems(initialCards);
 popupWithImage.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
+
+Promise.all([api.getUserInfo()])
+  .then(([info]) => {
+    console.log(info);
+    userInfo.setUserInfo(info);
+  })
+  .catch((err) => console.log(err));
