@@ -8,9 +8,11 @@
 // Для каждой карточки создайте экземпляр класса `Card`.
 
 export class Card {
-  constructor(name, link, templateSelector, openBigImage) {
-    this._name = name;
-    this._link = link;
+  constructor(cardElement, templateSelector, openBigImage) {
+    this._name = cardElement.name;
+    this._link = cardElement.link;
+    this._likeArray = cardElement.likes;
+    this._likeCounter = cardElement.likes.length;
     this._templateSelector = templateSelector;
     this._openBigImage = openBigImage;
   }
@@ -27,6 +29,10 @@ export class Card {
     this._newCard = this._getTemplate();
     this._likeCard = this._newCard.querySelector(".card__like");
     this._setData();
+
+    this._cardLikeCounter = this._card.querySelector(".card__like-counter");
+    this._cardLikeCounter.textContent = this._likeCounter;
+
     this._setListeners();
 
     return this._newCard;

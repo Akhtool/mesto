@@ -81,10 +81,9 @@ const userInfo = new UserInfo({
 });
 
 // функция для создание инстансов класса кард (добавление новых карточек)
-function createCard(item) {
+function createCard(cardElement) {
   return new Card(
-    item.name,
-    item.link,
+    cardElement,
     "#card-template",
     openPopupWithImage
   ).generateCard();
