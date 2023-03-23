@@ -19,9 +19,14 @@ export default class UserInfo {
     };
   }
 
+  getUserId() {
+    return this._userId;
+  }
+
   setUserInfo(data) {
     this._data = data;
     this._userName.textContent = this._data.name;
     this._userJob.textContent = this._data.about;
+    this._userId = data._id;
   }
 }

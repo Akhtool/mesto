@@ -15,7 +15,8 @@ import Section from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import Api from "../components/Api";
+import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
 // Новые экземпляры(инстансы)
 
@@ -42,6 +43,7 @@ const section = new Section(
 );
 // инстанс класса попапа показа большой картинки
 const popupWithImage = new PopupWithImage(".popup_type_show-image");
+
 function openPopupWithImage(name, link) {
   popupWithImage.open(name, link);
 }
@@ -80,15 +82,36 @@ const userInfo = new UserInfo({
   job: ".profile__description",
 });
 
+const popupWithConfirm = new PopupWithConfirm(
+  ".popup_type_confirm",
+  (cardId, cardElemment) => {
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardElemment.remove();
+      })
+      .then(() => {
+        popupWithConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
+
 // функция для создание инстансов класса кард (добавление новых карточек)
 function createCard(cardElement) {
   return new Card(
     cardElement,
     "#card-template",
-    openPopupWithImage
+    openPopupWithImage,
+    handleConfirmClick,
+    userInfo.getUserId()
   ).generateCard();
 }
-
+function handleConfirmClick(cardId, cardElemment) {
+  popupWithConfirm.open(cardId, cardElemment);
+}
 // CЛУШАТЕЛИ И ОБРАБОТЧИКИ
 
 // обработчики
@@ -125,6 +148,7 @@ buttonEditProfile.addEventListener("click", () => {
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
 popupWithImage.setEventListeners();
+popupWithConfirm.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
 

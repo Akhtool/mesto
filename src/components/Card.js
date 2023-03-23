@@ -8,13 +8,25 @@
 // Для каждой карточки создайте экземпляр класса `Card`.
 
 export class Card {
-  constructor(cardElement, templateSelector, openBigImage) {
+  constructor(
+    cardElement,
+    templateSelector,
+    openBigImage,
+    handleConfirmClick,
+    userId
+  ) {
     this._name = cardElement.name;
     this._link = cardElement.link;
     this._likeArray = cardElement.likes;
     this._likeCounter = cardElement.likes.length;
     this._templateSelector = templateSelector;
     this._openBigImage = openBigImage;
+
+    this._ownerId = cardElement.owner._id;
+    this._cardId = cardElement._id;
+    this._userId = userId;
+
+    this._handleConfirmClick = handleConfirmClick;
   }
 
   _getTemplate() {
@@ -34,6 +46,7 @@ export class Card {
     this._cardLikeCounter.textContent = this._likeCounter;
 
     this._setListeners();
+    this._setDeleteButton();
 
     return this._newCard;
   }
@@ -48,9 +61,19 @@ export class Card {
     this._cardImage.alt = this._name;
   }
 
+  _askUserBeforeDelete = () => {
+    this._handleConfirmClick(this._cardId, this._card);
+  };
+
   _handleDeleteClick() {
     this._newCard.remove();
     this._newCard = null;
+  }
+
+  _setDeleteButton() {
+    if (this._userId !== this._ownerId) {
+      this._deleteCardButton.remove();
+    }
   }
 
   _handleLikeClick() {
@@ -62,9 +85,11 @@ export class Card {
     this._deleteCardButton = this._newCard.querySelector(
       ".card__delete-button"
     );
-    this._deleteCardButton.addEventListener("click", () => {
-      this._handleDeleteClick();
-    });
+    if (this._deleteCardButton) {
+      this._deleteCardButton.addEventListener("click", () => {
+        this._askUserBeforeDelete();
+      });
+    }
     // Слушатель клика на кнопку лайку
     this._likeCardButton = this._newCard.querySelector(".card__like");
     this._likeCardButton.addEventListener("click", () => {

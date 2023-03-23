@@ -28,6 +28,15 @@ export default class Api {
     }).then(this._checkResponseStatus);
   }
 
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((err) => {
+      return this._checkResponseStatus(err);
+    });
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
