@@ -67,6 +67,7 @@ const popupCard = new PopupWithForm(".popup_type_add-card", (formData) => {
     })
     .finally(() => popupCard.setButtonText("Сохранить"));
 });
+
 // инстанс класса попапа с формой для popupProfile
 const popupProfile = new PopupWithForm(
   ".popup_type_profile-edit",
@@ -131,6 +132,24 @@ const popupWithConfirm = new PopupWithConfirm(
   }
 );
 
+function handleLikeClick(cardId, isLiked, cardObject) {
+  if (isLiked) {
+    api
+      .removeLike(cardId)
+      .then((updatedCardData) => {
+        cardObject.updateLikesCount(updatedCardData.likes.length);
+      })
+      .catch((err) => console.log("Remove Card Like Error: ", err));
+  } else {
+    api
+      .addLike(cardId)
+      .then((updatedCardData) => {
+        cardObject.updateLikesCount(updatedCardData.likes.length);
+      })
+      .catch((err) => console.log("Add Card Like Error: ", err));
+  }
+}
+
 // функция для создание инстансов класса кард (добавление новых карточек)
 function createCard(cardElement) {
   const card = new Card(
@@ -138,7 +157,8 @@ function createCard(cardElement) {
     "#card-template",
     openPopupWithImage,
     handleConfirmClick,
-    userInfo.getUserId()
+    userInfo.getUserId(),
+    handleLikeClick
   );
   return card.generateCard();
 }
@@ -150,15 +170,15 @@ function handleConfirmClick(cardId, cardElemment) {
 // обработчики
 
 // обработчик клика добавления карточки
-function handleAddCardForm(inputValues) {
-  section.addItem(createCard(inputValues));
-}
+// function handleAddCardForm(inputValues) {
+//   section.addItem(createCard(inputValues));
+// }
 
 // обработчик клика редактирования профиля
 
-function handleProfileFormSubmit(inputValues) {
-  userInfo.setUserInfo(inputValues);
-}
+// function handleProfileFormSubmit(inputValues) {
+//   userInfo.setUserInfo(inputValues);
+// }
 
 // слушатели
 

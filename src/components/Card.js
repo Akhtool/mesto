@@ -1,5 +1,7 @@
 // Создайте класс `Card`, который создаёт карточку с текстом и ссылкой на изображение:
 
+import Api from "./Api";
+
 // - принимает в конструктор её данные и селектор её template-элемента;
 // - содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
 // - содержит приватные методы для каждого обработчика;
@@ -13,7 +15,8 @@ export class Card {
     templateSelector,
     openBigImage,
     handleConfirmClick,
-    userId
+    userId,
+    handleLikeClick
   ) {
     this._name = cardElement.name;
     this._link = cardElement.link;
@@ -27,6 +30,7 @@ export class Card {
     this._userId = userId;
 
     this._handleConfirmClick = handleConfirmClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -38,8 +42,12 @@ export class Card {
   }
 
   generateCard() {
+    this._isLiked = this._likeArray.some((like) => like._id === this._userId);
     this._newCard = this._getTemplate();
-    this._likeCard = this._newCard.querySelector(".card__like");
+    this._likeCardButton = this._newCard.querySelector(".card__like");
+    if (this._isLiked) {
+      this._likeCardButton.classList.add("card__like_active");
+    }
     this._setData();
 
     this._cardLikeCounter = this._card.querySelector(".card__like-counter");
@@ -76,8 +84,15 @@ export class Card {
     }
   }
 
-  _handleLikeClick() {
-    this._likeCard.classList.toggle("card__like_active");
+  updateLikesCount(likesCount) {
+    this._cardLikeCounter = this._card.querySelector(".card__like-counter");
+    this._cardLikeCounter.textContent = likesCount;
+  }
+
+  _likeCard() {
+    this._likeCardButton.classList.toggle("card__like_active");
+    this._handleLikeClick(this._cardId, this._isLiked, this);
+    this._isLiked = !this._isLiked;
   }
 
   _setListeners() {
@@ -91,9 +106,9 @@ export class Card {
       });
     }
     // Слушатель клика на кнопку лайку
-    this._likeCardButton = this._newCard.querySelector(".card__like");
+    // this._likeCardButton = this._newCard.querySelector(".card__like");
     this._likeCardButton.addEventListener("click", () => {
-      this._handleLikeClick();
+      this._likeCard();
     });
 
     this._cardImage.addEventListener("click", () => {
