@@ -55,6 +55,7 @@ function openPopupWithImage(name, link) {
 }
 // инстанс класса попапа с формой для popupCard
 const popupCard = new PopupWithForm(".popup_type_add-card", (formData) => {
+  popupCard.setButtonText("Сохранение...");
   api
     .addNewCard(formData)
     .then((item) => {
@@ -63,12 +64,14 @@ const popupCard = new PopupWithForm(".popup_type_add-card", (formData) => {
     })
     .catch((err) => {
       console.error(err);
-    });
+    })
+    .finally(() => popupCard.setButtonText("Сохранить"));
 });
 // инстанс класса попапа с формой для popupProfile
 const popupProfile = new PopupWithForm(
   ".popup_type_profile-edit",
   (userData) => {
+    popupProfile.setButtonText("Сохранение...");
     api
       .setUserInfo(userData)
       .then((newUserData) => {
@@ -79,13 +82,15 @@ const popupProfile = new PopupWithForm(
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => popupProfile.setButtonText("Сохранить"));
   }
 );
 
 const popupAvatar = new PopupWithForm(
   ".popup_type_edit-avatar",
   (newAvatarLink) => {
+    popupAvatar.setButtonText("Сохранение...");
     api
       .updateAvatar(newAvatarLink.link)
       .then((newUserData) => {
@@ -96,7 +101,8 @@ const popupAvatar = new PopupWithForm(
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => popupAvatar.setButtonText("Сохранить"));
   }
 );
 // инстанс класса который отвечает за управление отображением информации о пользователе на странице
@@ -109,6 +115,7 @@ const userInfo = new UserInfo({
 const popupWithConfirm = new PopupWithConfirm(
   ".popup_type_confirm",
   (cardId, cardElemment) => {
+    popupWithConfirm.setButtonText("Удаление...");
     api
       .deleteCard(cardId)
       .then(() => {
@@ -119,7 +126,8 @@ const popupWithConfirm = new PopupWithConfirm(
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => popupWithConfirm.setButtonText("Да"));
   }
 );
 

@@ -16,6 +16,10 @@ export default class PopupWithConfirm extends Popup {
     });
   }
 
+  setButtonText(text) {
+    this._confirmButton.value = text;
+  }
+
   open(cardId, cardElemment) {
     super.open();
 
