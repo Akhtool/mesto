@@ -51,6 +51,9 @@ export const buttonEditProfile = document.querySelector(
 export const popupEditProfile = document.querySelector(
   ".popup_type_profile-edit"
 );
+export const popupEditAvatar = document.querySelector(
+  ".popup_type_edit-avatar"
+);
 export const profileEditCloseButton = document.querySelector(
   ".popup__close-button_type_profile"
 );
@@ -88,8 +91,14 @@ export const cardElementLink = document.querySelector(
 export const cardAddForm = document.querySelector(
   ".popup__input-form_type_card"
 );
+export const editAvatarForm = document.querySelector(
+  ".popup__input-form_type_edit-avatar"
+);
 export const cardAddCloseButton = document.querySelector(
   ".popup__close-button_type_add-card"
+);
+export const avatarEditButton = document.querySelector(
+  ".profile__image-edit-button"
 );
 // Список карточек
 export const cardsList = document.querySelector(".cards__list");

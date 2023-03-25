@@ -7,7 +7,8 @@
 // - Содержит публичный метод `setUserInfo,` который принимает новые данные пользователя и добавляет их на страницу.
 
 export default class UserInfo {
-  constructor({ userName, job }) {
+  constructor({ userName, job, profileAvatar }) {
+    this._profileAvatar = document.querySelector(profileAvatar);
     this._userName = document.querySelector(userName);
     this._userJob = document.querySelector(job);
   }
@@ -25,6 +26,8 @@ export default class UserInfo {
 
   setUserInfo(data) {
     this._data = data;
+    this._profileAvatar.src = data.avatar;
+    this._profileAvatar.alt = data.name;
     this._userName.textContent = this._data.name;
     this._userJob.textContent = this._data.about;
     this._userId = data._id;

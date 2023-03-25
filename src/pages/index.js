@@ -10,6 +10,8 @@ import {
   popupAddCard,
   cardAddButton,
   apiOptions,
+  avatarEditButton,
+  popupEditAvatar,
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -31,6 +33,10 @@ const popupAddFormValidator = new FormValidator(validationConfig, popupAddCard);
 const popupEditFormValidator = new FormValidator(
   validationConfig,
   popupEditProfile
+);
+const popupEditAvatarValidator = new FormValidator(
+  validationConfig,
+  popupEditAvatar
 );
 // инстанс который отвечает за отрисовку элементов на странице
 const section = new Section(
@@ -76,10 +82,28 @@ const popupProfile = new PopupWithForm(
       });
   }
 );
+
+const popupAvatar = new PopupWithForm(
+  ".popup_type_edit-avatar",
+  (newAvatarLink) => {
+    api
+      .updateAvatar(newAvatarLink.link)
+      .then((newUserData) => {
+        userInfo.setUserInfo(newUserData);
+      })
+      .then(() => {
+        popupAvatar.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
 // инстанс класса который отвечает за управление отображением информации о пользователе на странице
 const userInfo = new UserInfo({
   userName: ".profile__name",
   job: ".profile__description",
+  profileAvatar: ".profile__image",
 });
 
 const popupWithConfirm = new PopupWithConfirm(
@@ -101,13 +125,14 @@ const popupWithConfirm = new PopupWithConfirm(
 
 // функция для создание инстансов класса кард (добавление новых карточек)
 function createCard(cardElement) {
-  return new Card(
+  const card = new Card(
     cardElement,
     "#card-template",
     openPopupWithImage,
     handleConfirmClick,
     userInfo.getUserId()
-  ).generateCard();
+  );
+  return card.generateCard();
 }
 function handleConfirmClick(cardId, cardElemment) {
   popupWithConfirm.open(cardId, cardElemment);
@@ -129,6 +154,11 @@ function handleProfileFormSubmit(inputValues) {
 
 // слушатели
 
+avatarEditButton.addEventListener("click", () => {
+  popupAvatar.open();
+  popupEditAvatarValidator.disableValidation();
+});
+
 // слушатель клика добавления карточки
 cardAddButton.addEventListener("click", () => {
   popupCard.open();
@@ -147,10 +177,12 @@ buttonEditProfile.addEventListener("click", () => {
 // Включение фич
 popupAddFormValidator.enableValidation();
 popupEditFormValidator.enableValidation();
+popupEditAvatarValidator.enableValidation();
 popupWithImage.setEventListeners();
 popupWithConfirm.setEventListeners();
 popupCard.setEventListeners();
 popupProfile.setEventListeners();
+popupAvatar.setEventListeners();
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([info, cards]) => {

@@ -19,11 +19,9 @@
     </header>
     <main class="container">
       <section class="profile">
-        <img
-          src="<%=require('./images/profile__image.jpg')%>"
-          alt="Изображение профиля"
-          class="profile__image"
-        />
+        <button class="profile__image-edit-button">
+          <img src="#" alt="#" class="profile__image" />
+        </button>
         <div class="profile__info">
           <div class="profile__name-edit">
             <h1 class="profile__name"></h1>
@@ -141,6 +139,7 @@
         ></button>
       </div>
     </div>
+    <!-- Попап подтверждения удаления -->
     <div class="popup popup_type_confirm">
       <div class="popup__container">
         <button
@@ -150,6 +149,34 @@
         ></button>
         <h2 class="popup__title">Вы уверены?</h2>
         <input type="submit" value="Да" class="popup__submit" />
+      </div>
+    </div>
+    <!-- Попап изменения аватара -->
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          action="#"
+          name="input-form"
+          class="popup__input-form popup__input-form_type_edit-avatar"
+          novalidate
+        >
+          <input
+            type="url"
+            name="link"
+            class="popup__input popup__input_type_avatar-link"
+            placeholder="Ссылка на картинку"
+            id="avatar-link-input"
+            required
+          />
+          <span class="avatar-link-input-error popup__input-error"></span>
+          <input type="submit" value="Сохранить" class="popup__submit" />
+        </form>
+        <button
+          type="button"
+          class="popup__close-button popup__close-button_type_add-card"
+          aria-label="close"
+        ></button>
       </div>
     </div>
     <!-- Шаблон для карточек -->
