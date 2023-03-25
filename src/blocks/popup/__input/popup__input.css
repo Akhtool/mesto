@@ -18,6 +18,7 @@
 
 .popup__input:first-child {
   margin-bottom: 5px;
+  margin-top: 44px;
 }
 
 .popup__input:nth-child(2) {

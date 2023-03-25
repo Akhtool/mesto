@@ -9,33 +9,40 @@ export const validationConfig = {
   typeError: "popup__input_type_error",
 };
 
+export const apiOptions = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-61",
+  headers: {
+    authorization: "6549de70-7f4c-4043-bf96-f9bc846b4c3b",
+    "Content-Type": "application/json",
+  },
+};
 // Исходные карточки
-export const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+// export const initialCards = [
+//   {
+//     name: "Архыз",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//   },
+//   {
+//     name: "Челябинская область",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//   },
+//   {
+//     name: "Иваново",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//   },
+//   {
+//     name: "Камчатка",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//   },
+//   {
+//     name: "Холмогорский район",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//   },
+//   {
+//     name: "Байкал",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//   },
+// ];
 
 // Основные константы
 export const buttonEditProfile = document.querySelector(
@@ -43,6 +50,9 @@ export const buttonEditProfile = document.querySelector(
 );
 export const popupEditProfile = document.querySelector(
   ".popup_type_profile-edit"
+);
+export const popupEditAvatar = document.querySelector(
+  ".popup_type_edit-avatar"
 );
 export const profileEditCloseButton = document.querySelector(
   ".popup__close-button_type_profile"
@@ -81,8 +91,14 @@ export const cardElementLink = document.querySelector(
 export const cardAddForm = document.querySelector(
   ".popup__input-form_type_card"
 );
+export const editAvatarForm = document.querySelector(
+  ".popup__input-form_type_edit-avatar"
+);
 export const cardAddCloseButton = document.querySelector(
   ".popup__close-button_type_add-card"
+);
+export const avatarEditButton = document.querySelector(
+  ".profile__image-edit-button"
 );
 // Список карточек
 export const cardsList = document.querySelector(".cards__list");
