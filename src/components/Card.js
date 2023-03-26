@@ -81,14 +81,20 @@ export class Card {
   }
 
   updateLikesCount(likesCount) {
-    this._cardLikeCounter = this._card.querySelector(".card__like-counter");
     this._cardLikeCounter.textContent = likesCount;
   }
 
   _likeCard() {
-    this._likeCardButton.classList.toggle("card__like_active");
     this._handleLikeClick(this._cardId, this._isLiked, this);
     this._isLiked = !this._isLiked;
+  }
+
+  setLikeActive() {
+    this._likeCardButton.classList.add("card__like_active");
+  }
+
+  setLikeInactive() {
+    this._likeCardButton.classList.remove("card__like_active");
   }
 
   _setListeners() {
@@ -101,8 +107,7 @@ export class Card {
         this._askUserBeforeDelete();
       });
     }
-    // Слушатель клика на кнопку лайку
-    // this._likeCardButton = this._newCard.querySelector(".card__like");
+    // Слушатель клика на кнопку лайка
     this._likeCardButton.addEventListener("click", () => {
       this._likeCard();
     });

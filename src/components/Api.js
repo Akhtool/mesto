@@ -69,7 +69,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
-      return this._checkResponseStatus(res, "addLike");
+      return this._checkResponseStatus(res);
     });
   }
 
@@ -78,7 +78,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      return this._checkResponseStatus(res, "removeLike");
+      return this._checkResponseStatus(res);
     });
   }
 }

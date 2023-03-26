@@ -137,6 +137,7 @@ function handleLikeClick(cardId, isLiked, cardObject) {
     api
       .removeLike(cardId)
       .then((updatedCardData) => {
+        cardObject.setLikeInactive();
         cardObject.updateLikesCount(updatedCardData.likes.length);
       })
       .catch((err) => console.log("Remove Card Like Error: ", err));
@@ -144,6 +145,7 @@ function handleLikeClick(cardId, isLiked, cardObject) {
     api
       .addLike(cardId)
       .then((updatedCardData) => {
+        cardObject.setLikeActive();
         cardObject.updateLikesCount(updatedCardData.likes.length);
       })
       .catch((err) => console.log("Add Card Like Error: ", err));
